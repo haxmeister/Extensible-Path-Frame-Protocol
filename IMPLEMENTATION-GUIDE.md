@@ -143,7 +143,7 @@ Reject unacceptable declared lengths immediately after decoding the header.
 
 Reject malformed path bytes before delivering the frame to application code.
 
-On a byte-stream transport, terminating the EPF session after malformed input is the simplest behavior consistent with the specification.
+On a byte-stream transport, stopping EPF decoding after malformed input is the simplest behavior consistent with the specification. An implementation that controls the surrounding transport may close it.
 
 Do not search arbitrary later bytes for a guessed replacement frame boundary.
 
