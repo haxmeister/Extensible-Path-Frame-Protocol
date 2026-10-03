@@ -1,0 +1,82 @@
+{
+  "specification": "EPF 0.1",
+  "encoding": "lowercase hexadecimal",
+  "valid": [
+    {
+      "name": "root-empty",
+      "path_keys_hex": [],
+      "payload_hex": "",
+      "frame_hex": "000000000000"
+    },
+    {
+      "name": "root-hello",
+      "path_keys_hex": [],
+      "payload_hex": "68656c6c6f",
+      "frame_hex": "00000000000568656c6c6f"
+    },
+    {
+      "name": "single-key-empty-payload",
+      "path_keys_hex": [
+        "61"
+      ],
+      "payload_hex": "",
+      "frame_hex": "00010000000061"
+    },
+    {
+      "name": "three-key-path",
+      "path_keys_hex": [
+        "7573657273",
+        "3432",
+        "617661746172"
+      ],
+      "payload_hex": "504e47",
+      "frame_hex": "000f00000003757365727300343200617661746172504e47"
+    },
+    {
+      "name": "binary-keys-and-payload",
+      "path_keys_hex": [
+        "ff01",
+        "78"
+      ],
+      "payload_hex": "00ff",
+      "frame_hex": "000400000002ff01007800ff"
+    }
+  ],
+  "invalid": [
+    {
+      "name": "empty-key-only",
+      "frame_hex": "00010000000000",
+      "expected_error": "empty_key"
+    },
+    {
+      "name": "leading-separator",
+      "frame_hex": "0002000000000061",
+      "expected_error": "empty_key"
+    },
+    {
+      "name": "trailing-separator",
+      "frame_hex": "0002000000006100",
+      "expected_error": "empty_key"
+    },
+    {
+      "name": "consecutive-separators",
+      "frame_hex": "00040000000061000062",
+      "expected_error": "empty_key"
+    },
+    {
+      "name": "truncated-header",
+      "frame_hex": "00000000",
+      "expected_error": "truncated_frame"
+    },
+    {
+      "name": "truncated-path",
+      "frame_hex": "0003000000006162",
+      "expected_error": "truncated_frame"
+    },
+    {
+      "name": "truncated-payload",
+      "frame_hex": "0000000000036162",
+      "expected_error": "truncated_frame"
+    }
+  ]
+}
