@@ -174,7 +174,7 @@ A frame that exceeds a local implementation limit is not necessarily malformed o
 
 EPF 0.1 defines no resynchronization marker and no byte-scanning recovery procedure.
 
-On an ordered byte-stream transport, an implementation that encounters malformed input SHOULD terminate the EPF session.
+On an ordered byte-stream transport, an implementation that encounters malformed input SHOULD stop decoding further EPF frames from that byte stream. If the implementation controls the surrounding transport, it MAY close that transport.
 
 An implementation MUST NOT claim EPF resynchronization by searching arbitrary subsequent bytes for a guessed frame boundary.
 
